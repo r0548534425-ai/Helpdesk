@@ -1,8 +1,15 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/Slice";
-import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
-import { Home, Dashboard, ConfirmationNumber, People, Label, CheckCircle, Logout, Login, AddCircle } from '@mui/icons-material';
+import { AppBar, Toolbar, Button, Box, Typography } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PeopleIcon from '@mui/icons-material/People';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const Header: React.FC = () => {
     const { state } = useContext(AuthContext);
@@ -11,49 +18,66 @@ const Header: React.FC = () => {
   
     if (!user) {
         return (
-            <AppBar position="sticky" sx={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-                <Container maxWidth="xl">
-                    <Toolbar>
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: 'flex', gap: 2 }}>
-                            <Button component={Link} to="/login" startIcon={<Login />} sx={{ color: 'white' }}>כניסה</Button>
-                            <Button component={Link} to="/" startIcon={<Home />} sx={{ color: 'white' }}>אודות</Button>
-                        </Box>
-                    </Toolbar>
-                </Container>
+            <AppBar position="static" sx={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+                <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+                        🎫 מערכת ניהול טיקטים
+                    </Typography>
+                    <Button color="inherit" component={Link} to="/login" startIcon={<LoginIcon />}>
+                        כניסה
+                    </Button>
+                    <Button color="inherit" component={Link} to="/" startIcon={<InfoIcon />}>
+                        אודות
+                    </Button>
+                </Toolbar>
             </AppBar>
         );
     }
 
     return (
-        <AppBar position="sticky" sx={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', boxShadow: 3 }}>
-            <Container maxWidth="xl">
-                <Toolbar sx={{ justifyContent: 'space-between' }}>
-                    <Box component="div" sx={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>
-                        🎫 מערכת Helpdesk
-                    </Box>
-                    
-                    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                        {user.role === 'admin' && (
-                            <>
-                                <Button component={Link} to="/users/new" startIcon={<AddCircle />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>הוסף משתמש</Button>
-                                <Button component={Link} to="/users" startIcon={<People />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>משתמשים</Button>
-                                <Button component={Link} to="/status" startIcon={<CheckCircle />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>סטטוסים</Button>
-                                <Button component={Link} to="/priority" startIcon={<Label />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>עדיפויות</Button>
-                            </>
-                        )}
+        <AppBar position="static" sx={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+            <Toolbar>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+                    🎫 מערכת ניהול טיקטים
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                    {user.role === 'admin' && (
+                        <>
+                            <Button color="inherit" component={Link} to="/users/new" startIcon={<PersonAddIcon />}>
+                                הוסף משתמש
+                            </Button>
+                            <Button color="inherit" component={Link} to="/users" startIcon={<PeopleIcon />}>
+                                הצגת משתמשים
+                            </Button>
+                            <Button color="inherit" component={Link} to="/status">
+                                סטטוסים
+                            </Button>
+                            <Button color="inherit" component={Link} to="/priority">
+                                עדיפויות
+                            </Button>
+                        </>
+                    )}
 
-                        {user.role === 'customer' && (
-                            <Button component={Link} to="/tickets/new" startIcon={<AddCircle />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>יצירת טיקט</Button>
-                        )}
+                    {user.role === 'customer' && (
+                        <Button color="inherit" component={Link} to="/tickets/new" startIcon={<AddCircleIcon />}>
+                            יצירת טיקט
+                        </Button>
+                    )}
 
-                        <Button component={Link} to="/tickets" startIcon={<ConfirmationNumber />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>טיקטים</Button>
-                        <Button component={Link} to="/dashboard" startIcon={<Dashboard />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>בית</Button>
-                        <Button component={Link} to="/" startIcon={<Home />} sx={{ color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}>אודות</Button>
-                        <Button component={Link} to="/logout" startIcon={<Logout />} sx={{ color: 'white', bgcolor: 'rgba(255,255,255,0.2)', '&:hover': { bgcolor: 'rgba(255,255,255,0.3)' } }}>התנתק</Button>
-                    </Box>
-                </Toolbar>
-            </Container>
+                    <Button color="inherit" component={Link} to="/tickets" startIcon={<ConfirmationNumberIcon />}>
+                        הצגת טיקטים
+                    </Button>
+                    <Button color="inherit" component={Link} to="/dashboard" startIcon={<HomeIcon />}>
+                        בית
+                    </Button>
+                    <Button color="inherit" component={Link} to="/" startIcon={<InfoIcon />}>
+                        אודות
+                    </Button>
+                    <Button color="inherit" component={Link} to="/logout" startIcon={<LogoutIcon />}>
+                        התנתקות
+                    </Button>
+                </Box>
+            </Toolbar>
         </AppBar>
     );
     

@@ -4,6 +4,8 @@ import ShowTicket from "./ShowTicket";
 import type { ticketProps } from "../../types";
 import { useQuery } from "@tanstack/react-query";
 import { getTickets } from "../../services/TicketService";
+import { Box, Container, Typography, CircularProgress, Card, CardContent } from '@mui/material';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import Header from "../Header";
 import Footer from "../Footer";
 
@@ -35,26 +37,72 @@ const ShowTicketDetails: React.FC = () => {
    
 
     return (
-        <>
-         <Header />
-            <h1 style={{ textAlign: 'center', direction: 'rtl' }}>רשימת טיקטים</h1>
-            {isLoading ? (
-                <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                    <p>טוען טיקטים, אנא המתן...</p>
-                </div> 
-            ) : filteredTickets?.length > 0 ? (
-                <div style={{ direction: 'rtl' }}>
-                    {filteredTickets.map((ticket: ticketProps) => (
-                        <ShowTicket key={ticket.id} ticket={ticket} />
-                    ))}
-                </div>
-            ) : (
-                <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                    <p>אין טיקטים להצגה</p>
-                </div>
-            )}
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'hidden' }}>
+            <Header />
+            <Box 
+                sx={{ 
+                    flex: 1,
+                    background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+                    py: 4,
+                    px: 2,
+                    overflow: 'auto'
+                }}
+            >
+                <Container maxWidth="xl">
+                    <Box sx={{ textAlign: 'center', mb: 4 }}>
+                        <ConfirmationNumberIcon sx={{ fontSize: 60, color: 'white', mb: 2 }} />
+                        <Typography variant="h3" component="h1" gutterBottom fontWeight="bold" sx={{ color: 'white' }}>
+                            רשימת טיקטים
+                        </Typography>
+                    </Box>
+
+                    {isLoading ? (
+                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
+                            <Box sx={{ textAlign: 'center' }}>
+                                <CircularProgress sx={{ color: 'white', mb: 2 }} size={60} />
+                                <Typography sx={{ color: 'white' }}>טוען טיקטים, אנא המתן...</Typography>
+                            </Box>
+                        </Box>
+                    ) : filteredTickets?.length > 0 ? (
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, direction: 'rtl' }}>
+                            {filteredTickets.map((ticket: ticketProps) => (
+                                <Card 
+                                    key={ticket.id}
+                                    sx={{ 
+                                        boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+                                        borderRadius: 3,
+                                        '&:hover': {
+                                            transform: 'translateY(-4px)',
+                                            boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
+                                            transition: 'all 0.3s ease'
+                                        }
+                                    }}
+                                >
+                                    <CardContent>
+                                        <ShowTicket ticket={ticket} />
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </Box>
+                    ) : (
+                        <Card sx={{ 
+                            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+                            borderRadius: 3,
+                            textAlign: 'center',
+                            py: 8
+                        }}>
+                            <CardContent>
+                                <ConfirmationNumberIcon sx={{ fontSize: 80, color: '#667eea', mb: 2, opacity: 0.5 }} />
+                                <Typography variant="h5" color="text.secondary">
+                                    אין טיקטים להצגה
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    )}
+                </Container>
+            </Box>
             <Footer />
-        </>
+        </Box>
     );
 };
 

@@ -1,5 +1,6 @@
 import axios from "axios";
-import type { CommentInput, CommentInputAdd } from "../types";
+import swal from "sweetalert";
+import type { CommentInputAdd } from "../types";
 
 export const AddComment = async (variables: CommentInputAdd) => {
     try {
@@ -16,8 +17,13 @@ export const AddComment = async (variables: CommentInputAdd) => {
             }
         );
         return response.data;
-    } catch (error) {
-        console.error("Error adding comment:", error);
+    } catch (error: any) {
+        const message = error.response?.data?.message || "אירעה שגיאה במהלך הוספת התגובה.";
+        swal({
+            title: "שגיאה בהוספת תגובה",
+            text: message,
+            icon: "error"
+        });
         throw error;
     }
 }
@@ -34,9 +40,14 @@ export const getComments = async (ticketId: number, token: string | null) => {
             }
         );
         return response.data;
-    } catch (error) {
-        console.error("Error fetching comments:", error);
-        throw error;
+    } catch (error: any) {
+        const message = error.response?.data?.message || "אירעה שגיאה במהלך קבלת התגובות.";
+        swal({
+            title: "שגיאה בקבלת תגובות",
+            text: message,
+            icon: "error"
+        });
+        return null;
     }
 }
 

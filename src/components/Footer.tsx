@@ -1,65 +1,72 @@
 import React from "react";
-import { Box, Container, Typography, Grid2 as Grid, Link } from "@mui/material";
-import { Phone, Email, LocationOn, Facebook, Twitter, LinkedIn } from "@mui/icons-material";
+import { Box, Container, Typography } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Footer: React.FC = () => {
     return (
-        <Box component="footer" sx={{ 
-            background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
-            color: 'white',
-            py: 6,
-            mt: 8
-        }}>
-            <Container maxWidth="xl">
-                <Grid container spacing={4}>
-                    <Grid size={{ xs: 12, md: 4 }}>
-                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>
-                            🎫 מערכת Helpdesk Pro
+        <Box
+            component="footer"
+            sx={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: 'white',
+                py: 6,
+                mt: 'auto',
+                width: '100%'
+            }}
+        >
+            <Container maxWidth="xl" sx={{ px: 2 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                    <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 30%' } }}>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+                            🎫 מערכת ניהול טיקטים
                         </Typography>
-                        <Typography variant="body2" sx={{ mb: 2, opacity: 0.9 }}>
-                            מערכת מתקדמת לניהול טיקטים ושירות לקוחות. אנחנו כאן כדי לעזור לך לנהל את כל הפניות בצורה יעילה ומקצועית.
+                        <Typography variant="body2" sx={{ mt: 2 }}>
+                            הפתרון המושלם לניהול פניות שירות ותמיכה טכנית.
+                            מערכת מתקדמת, פשוטה לשימוש ויעילה.
                         </Typography>
-                    </Grid>
-
-                    <Grid size={{ xs: 12, md: 4 }}>
-                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>
+                    </Box>
+                    
+                    <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 30%' } }}>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                             צור קשר
                         </Typography>
-                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
-                            <Phone fontSize="small" />
+                        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, gap: 1 }}>
+                            <PhoneIcon fontSize="small" />
                             <Typography variant="body2">03-1234567</Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
-                            <Email fontSize="small" />
-                            <Typography variant="body2">support@helpdesk.co.il</Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, gap: 1 }}>
+                            <EmailIcon fontSize="small" />
+                            <Typography variant="body2">support@tickets.co.il</Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            <LocationOn fontSize="small" />
-                            <Typography variant="body2">תל אביב, ישראל</Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, gap: 1 }}>
+                            <LocationOnIcon fontSize="small" />
+                            <Typography variant="body2">רחוב הטכנולוגיה 15, תל אביב</Typography>
                         </Box>
-                    </Grid>
-
-                    <Grid size={{ xs: 12, md: 4 }}>
-                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>
-                            עקוב אחרינו
+                    </Box>
+                    
+                    <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 30%' } }}>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+                            שעות פעילות
                         </Typography>
-                        <Box sx={{ display: 'flex', gap: 2 }}>
-                            <Link href="#" sx={{ color: 'white', '&:hover': { color: '#667eea' } }}>
-                                <Facebook />
-                            </Link>
-                            <Link href="#" sx={{ color: 'white', '&:hover': { color: '#667eea' } }}>
-                                <Twitter />
-                            </Link>
-                            <Link href="#" sx={{ color: 'white', '&:hover': { color: '#667eea' } }}>
-                                <LinkedIn />
-                            </Link>
-                        </Box>
-                    </Grid>
-                </Grid>
-
-                <Box sx={{ borderTop: '1px solid rgba(255,255,255,0.1)', mt: 4, pt: 3, textAlign: 'center' }}>
-                    <Typography variant="body2" sx={{ opacity: 0.8 }}>
-                        © 2025 מערכת ניהול טיקטים - כל הזכויות שמורות | נבנה באהבה ❤️
+                        <Typography variant="body2" sx={{ mt: 2 }}>
+                            ראשון - חמישי: 24/7
+                        </Typography>
+                        <Typography variant="body2">
+                            שישי: 08:00 - 15:00
+                        </Typography>
+                        <Typography variant="body2" sx={{ mt: 2, fontWeight: 'bold' }}>
+                            🌟 זמינים עבורכם בכל עת! 🌟
+                        </Typography>
+                    </Box>
+                </Box>
+                
+                <Box sx={{ borderTop: '1px solid rgba(255,255,255,0.2)', mt: 4, pt: 3, textAlign: 'center' }}>
+                    <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5 }}>
+                        © 2025 מערכת ניהול טיקטים - כל הזכויות שמורות | נבנה עם 
+                        <FavoriteIcon fontSize="small" sx={{ color: '#ff6b6b' }} />
                     </Typography>
                 </Box>
             </Container>

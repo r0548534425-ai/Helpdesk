@@ -1,8 +1,9 @@
-import axios from "axios";
 import React, { useContext } from "react";
 import { AddStatus } from "../../services/StatusService";
 import { AuthContext } from "../../context/Slice";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { Box, Card, CardContent, TextField, Button, Typography, Container } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Header from "../Header";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
@@ -33,18 +34,77 @@ const AddStatusApi: React.FC = ()=>{
 
     return(  
    
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflow: 'hidden' }}>
       <Header />
-    <h1>יצירת Status</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="סטטוס" {...register("status" ,{ required: "נושא הוא שדה חובה", maxLength: 20})} />
-      {errors.status && <span style={{ color: "red" }}>{errors.status.message}</span>}
-      
-      <input type="submit" />
-    </form>
-   
-    <Footer />
-    </>
+      <Box 
+        sx={{ 
+          flex: 1,
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          py: 4,
+          px: 2,
+          overflow: 'auto'
+        }}
+      >
+        <Container maxWidth="sm">
+          <Card 
+            sx={{ 
+              boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+              borderRadius: 3,
+              direction: 'rtl'
+            }}
+          >
+            <CardContent sx={{ p: 4 }}>
+              <Box sx={{ textAlign: 'center', mb: 4 }}>
+                <CheckCircleIcon sx={{ fontSize: 60, color: '#667eea', mb: 2 }} />
+                <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
+                  יצירת סטטוס חדש
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  הוסף סטטוס חדש למערכת
+                </Typography>
+              </Box>
+
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <TextField
+                  fullWidth
+                  label="שם הסטטוס"
+                  variant="outlined"
+                  margin="normal"
+                  {...register("status", { 
+                    required: "סטטוס הוא שדה חובה",
+                    maxLength: { value: 50, message: "שם ארוך מדי" }
+                  })}
+                  error={!!errors.status}
+                  helperText={errors.status?.message}
+                  sx={{ direction: 'rtl' }}
+                />
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  startIcon={<CheckCircleIcon />}
+                  sx={{ 
+                    mt: 3,
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    '&:hover': {
+                      background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
+                    }
+                  }}
+                >
+                  צור סטטוס
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </Container>
+      </Box>
+      <Footer />
+    </Box>
     )
 }
 

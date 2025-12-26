@@ -79,12 +79,8 @@ const AuthMe = async (token: string) => {
         });
         return response.data;
     } catch (error: any) {
-        const message = error.response?.data?.message || "אירעה שגיאה במהלך קבלת פרטי המשתמש.";
-        swal({
-            title: "שגיאה בקבלת פרטי משתמש",
-            text: message,
-            icon: "error"
-        });
+        // Token לא תקף - לא מציגים שגיאה, פשוט מחזירים null
+        console.log("Token is invalid or expired");
         return null;
     }
     

@@ -41,6 +41,6 @@ export const AddStatus=async(statusName: string, token:string|null)=>{
             text: message,
             icon: "error"
         });
-        return false;
+       throw error
     }
 };

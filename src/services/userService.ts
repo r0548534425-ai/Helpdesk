@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import type { UserInput, UserProps} from "../types";
 import swal from 'sweetalert';
 

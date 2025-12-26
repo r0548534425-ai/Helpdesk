@@ -8,7 +8,7 @@ import axios from "axios";
 const AddTicketApi=async(ticket:TicketInput)=>{
     try{
        const{token,...dataToSend}=ticket;
-        const response=await axios.post("http://localhost:4000/tickets", dataToSend,{
+        await axios.post("http://localhost:4000/tickets", dataToSend,{
             headers:{
                 "Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`
@@ -16,7 +16,7 @@ const AddTicketApi=async(ticket:TicketInput)=>{
         });
         return true;
     } catch (error: any) {
-    const message = error.response?.data?.message || "אירעה שגיאה במהלך קבלת הסטטוסים.";
+    const message = error.response?.data?.message ;
     swal({
     title: "שגיאה ביצירת טיקט",
     text: message,
@@ -91,7 +91,7 @@ const DeleteTicketApi=async(Ticket:TickeToDelete)=>{
     text: message,
     icon: "error"
 });
-        return false;
+      throw error;
     }
 }
   

@@ -1,10 +1,11 @@
 
-import React, { use, useContext } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/Slice";
 import type { TickeToDelete } from "../../types";
 import { DeleteTicketApi } from "../../services/TicketService";
 import { QueryClient, useMutation } from "@tanstack/react-query";
+import swal from "sweetalert";
 const DeleteTicket: React.FC = () => {
     const queryClient = new QueryClient();
     const id=useParams().id;

@@ -14,7 +14,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) => {
     return <Navigate to="/" replace />;
   }
 
-  // אם עדיין לא נטען ה-user, מחכים
+  
   if (!state.user) {
     return <div>טוען...</div>;
   }
