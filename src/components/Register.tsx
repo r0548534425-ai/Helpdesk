@@ -25,7 +25,7 @@ swal({
   text: "נרשמת בהצלחה!!",
   icon: "success"
 });
-    navigate('/home');
+    navigate('/dashboard');
   }
 };
 

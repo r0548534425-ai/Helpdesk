@@ -16,7 +16,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 
 
-const ShowTicket: React.FC<{ ticket: ticketProps }> = ({ ticket }) => {
+const ShowTicket: React.FC<{ ticket: ticketProps; hideCommentsButton?: boolean }> = ({ ticket, hideCommentsButton = false }) => {
   const { state } = useContext(AuthContext);
   const queryClient = useQueryClient();
 
@@ -24,6 +24,7 @@ const ShowTicket: React.FC<{ ticket: ticketProps }> = ({ ticket }) => {
     mutationFn:(variables:TicketInput) => UpdateTicket(variables),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['ticket', ticket.id] });
       swal({ title: "הסוכן עודכן בהצלחה!", icon: "success" });
     }
   });
@@ -32,6 +33,7 @@ const ShowTicket: React.FC<{ ticket: ticketProps }> = ({ ticket }) => {
     mutationFn:(variables:TicketInput) => UpdateTicket(variables),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['ticket', ticket.id] });
       swal({ title: "סטטוס עודכן בהצלחה!", icon: "success" });
     }
   });
@@ -120,7 +122,7 @@ const ShowTicket: React.FC<{ ticket: ticketProps }> = ({ ticket }) => {
                 }}
               >
                 {statusList?.map((s: any) => (
-                  <option key={s.id} value={s.id}>{s.name}</option>
+                  <MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -189,7 +191,7 @@ const ShowTicket: React.FC<{ ticket: ticketProps }> = ({ ticket }) => {
           variant="contained"
           startIcon={<CommentIcon />}
           sx={{ 
-            flex: 1,
+            flex: hideCommentsButton ? undefined : 1,
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             '&:hover': {
               background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
@@ -199,23 +201,25 @@ const ShowTicket: React.FC<{ ticket: ticketProps }> = ({ ticket }) => {
           הוסף תגובה
         </Button>
         
-        <Button 
-          component={Link} 
-          to={`/tickets/${ticket.id}`}
-          variant="outlined"
-          startIcon={<VisibilityIcon />}
-          sx={{ 
-            flex: 1,
-            borderColor: '#667eea',
-            color: '#667eea',
-            '&:hover': {
-              borderColor: '#764ba2',
-              backgroundColor: 'rgba(102, 126, 234, 0.04)'
-            }
-          }}
-        >
-          הצג תגובות
-        </Button>
+        {!hideCommentsButton && (
+          <Button 
+            component={Link} 
+            to={`/tickets/${ticket.id}`}
+            variant="outlined"
+            startIcon={<VisibilityIcon />}
+            sx={{ 
+              flex: 1,
+              borderColor: '#667eea',
+              color: '#667eea',
+              '&:hover': {
+                borderColor: '#764ba2',
+                backgroundColor: 'rgba(102, 126, 234, 0.04)'
+              }
+            }}
+          >
+            הצג תגובות
+          </Button>
+        )}
       </Box>
     </Box>
   );

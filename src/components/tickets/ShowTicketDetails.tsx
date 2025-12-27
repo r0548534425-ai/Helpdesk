@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/Slice";
-import ShowTicket from "./ShowTicket"; 
+import TicketSummaryCard from "./TicketSummaryCard"; 
 import type { ticketProps } from "../../types";
 import { useQuery } from "@tanstack/react-query";
 import { getTickets } from "../../services/TicketService";
@@ -64,24 +64,9 @@ const ShowTicketDetails: React.FC = () => {
                             </Box>
                         </Box>
                     ) : filteredTickets?.length > 0 ? (
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, direction: 'rtl' }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, direction: 'rtl' }}>
                             {filteredTickets.map((ticket: ticketProps) => (
-                                <Card 
-                                    key={ticket.id}
-                                    sx={{ 
-                                        boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-                                        borderRadius: 3,
-                                        '&:hover': {
-                                            transform: 'translateY(-4px)',
-                                            boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
-                                            transition: 'all 0.3s ease'
-                                        }
-                                    }}
-                                >
-                                    <CardContent>
-                                        <ShowTicket ticket={ticket} />
-                                    </CardContent>
-                                </Card>
+                                <TicketSummaryCard key={ticket.id} ticket={ticket} />
                             ))}
                         </Box>
                     ) : (

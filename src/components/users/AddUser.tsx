@@ -27,9 +27,9 @@ const AddUser:React.FC = () => {
       swal({
         title: "User created successfully",
         icon: "success"
+      }).then(() => {
+      navigate('/dashboard');
       });
-      navigate('/home');
-      
   }
   }
 

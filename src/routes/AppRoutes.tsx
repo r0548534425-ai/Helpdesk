@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from '../components/Login';
 import Register from '../components/Register';
@@ -8,7 +7,7 @@ import AddUser from '../components/users/AddUser';
 import ShowTicketDetails from '../components/tickets/ShowTicketDetails';
 import ShowUserDetails from '../components/users/ShowUserDetails';
 import AddCommentComponent from '../components/comments/AddComment';
-import ShowCommentDetails from '../components/comments/ShowCommentDetails';
+import TicketDetailsPage from '../pages/TicketDetailsPage';
 import ProtectedRoute from '../guards/ProtectedRoute';
 import Unauthorized from '../pages/Unauthorized';
 import Logout from '../components/Logout';
@@ -16,7 +15,6 @@ import Dashboard from '../pages/Dashboard';
 import Priority from '../components/priorities/Priority';
 import AddPriorityApi from '../components/priorities/AddPriorityApi';
 import ShowPriority from '../components/priorities/ShowPriority';
-import AddStatusApi from '../components/statuses/AddStatus';
 import ShowStatus from '../components/statuses/ShowStatus';
 import DeleteTicket from '../components/tickets/DeleteTicket';
 import AddStatus from '../components/statuses/AddStatus';
@@ -26,15 +24,16 @@ import NotFound from '../pages/notFount';
 const AppRoutes = () => {
     return (
         <Routes> 
-            <Route path="/" element={<About />} />
+            <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
 
             <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<Dashboard />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/tickets" element={<ShowTicketDetails />} />
-                <Route path="/tickets/:id" element={<ShowCommentDetails />} />
+                <Route path="/tickets/:id" element={<TicketDetailsPage />} />
                 <Route path="/comments/add/:ticketID" element={<AddCommentComponent />} />
                 <Route path="/logout" element={<Logout />} /> 
             </Route>

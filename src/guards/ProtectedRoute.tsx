@@ -11,13 +11,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) => {
 
   
   if (!state.token) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/about" replace />;
   }
 
   
   if (!state.user) {
     return <div>טוען...</div>;
   }
+  
 
   // בודק אם יש הגבלת תפקידים
   if (allowedRoles && !allowedRoles.includes(state.user.role)) {

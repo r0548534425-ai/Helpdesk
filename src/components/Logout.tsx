@@ -18,7 +18,7 @@ const navigate=useNavigate();
         icon: "success",
     }).then(() => {
        
-        navigate('/');
+        navigate('/dashboard');
     });
         }, []);
     return (null);

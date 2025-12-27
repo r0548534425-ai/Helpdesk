@@ -71,12 +71,14 @@ return (
             />
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
-            <AccessTimeIcon sx={{ fontSize: 14, color: 'text.secondary' }} />
-            <Typography variant="caption" color="text.secondary">
-                נוצר: {new Date(created_at).toLocaleDateString('he-IL')}
-            </Typography>
-        </Box>
+        {created_at && (
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                <AccessTimeIcon sx={{ fontSize: 14, color: 'text.secondary' }} />
+                <Typography variant="caption" color="text.secondary">
+                    נוצר: {new Date(created_at).toLocaleDateString('he-IL')}
+                </Typography>
+            </Box>
+        )}
     </Box>
 ); 
 };

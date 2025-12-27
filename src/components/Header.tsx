@@ -10,6 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PeopleIcon from '@mui/icons-material/People';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import About from "../pages/About";
 
 const Header: React.FC = () => {
     const { state } = useContext(AuthContext);
@@ -26,7 +27,7 @@ const Header: React.FC = () => {
                     <Button color="inherit" component={Link} to="/login" startIcon={<LoginIcon />}>
                         כניסה
                     </Button>
-                    <Button color="inherit" component={Link} to="/" startIcon={<InfoIcon />}>
+                    <Button color="inherit" component={Link} to="/about" startIcon={<InfoIcon />}>
                         אודות
                     </Button>
                 </Toolbar>
@@ -70,7 +71,7 @@ const Header: React.FC = () => {
                     <Button color="inherit" component={Link} to="/dashboard" startIcon={<HomeIcon />}>
                         בית
                     </Button>
-                    <Button color="inherit" component={Link} to="/" startIcon={<InfoIcon />}>
+                    <Button color="inherit" component={Link} to="/about" startIcon={<InfoIcon />}>
                         אודות
                     </Button>
                     <Button color="inherit" component={Link} to="/logout" startIcon={<LogoutIcon />}>
