@@ -1,7 +1,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom'  
 import React, { useContext, useState } from "react"; 
-import { AuthContext } from "../../../context/AuthContex"; 
+import { AuthContext } from "../../../context/AuthContext"; 
 import { Box, Card, CardContent, TextField, Button, Typography, CircularProgress, Container } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';

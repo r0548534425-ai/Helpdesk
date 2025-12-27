@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContex";
+import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import type { TicketInput, TickeToDelete, ticketProps, UserProps } from "../../types";
 import { ShowUsers } from "../../services/userService";

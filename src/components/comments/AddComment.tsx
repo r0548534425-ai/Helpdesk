@@ -3,7 +3,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AuthContext } from "../../context/AuthContex";
+import { AuthContext } from "../../context/AuthContext";
 import { AddComment as AddCommentAPI } from "../../services/CommentService"; 
 import type { CommentInputAdd } from "../../types";
 import { Box, Card, CardContent, TextField, Button, Typography, CircularProgress, Container } from '@mui/material';

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AddStatus } from "../../services/StatusService";
-import { AuthContext } from "../../context/AuthContex";
+import { AuthContext } from "../../context/AuthContext";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Box, Card, CardContent, TextField, Button, Typography, Container } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';

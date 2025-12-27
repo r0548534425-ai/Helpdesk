@@ -2,7 +2,7 @@
 import React, { useContext } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { useNavigate } from 'react-router-dom'  
-import { AuthContext } from "../../../context/AuthContex.tsx"
+import { AuthContext } from "../../../context/AuthContext.tsx"
 import { RegisterUser } from "../../../services/AuthService.ts"; 
 import type { RegisterInput } from "../../../types/index.ts";
 import { Box, Card, CardContent, TextField, Button, Typography, CircularProgress, Container } from '@mui/material';

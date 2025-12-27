@@ -6,7 +6,7 @@ import Header from './components/Header'
 import './App.css'
 
 
-import { AuthProvider } from './context/AuthContex';
+import { AuthProvider } from './context/AuthContext';
 
 import AppRoutes from './routes/AppRoutes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

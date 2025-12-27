@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { GetPriorities } from "../../services/PriorityService";
-import { AuthContext } from "../../context/AuthContex";
+import { AuthContext } from "../../context/AuthContext";
 import { Box, Container, Typography, CircularProgress, Card, CardContent, Chip } from '@mui/material';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import Header from "../Header";

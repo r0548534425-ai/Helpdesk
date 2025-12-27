@@ -1,7 +1,7 @@
 
 import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContex";
+import { AuthContext } from "../../context/AuthContext";
 import type { TickeToDelete } from "../../types";
 import { DeleteTicketApi } from "../../services/TicketService";
 import { QueryClient, useMutation } from "@tanstack/react-query";
