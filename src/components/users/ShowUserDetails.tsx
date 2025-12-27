@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../context/Slice";
+import { AuthContext } from "../../context/AuthContex";
 import type { UserProps } from "../../types";
 import { ShowUsers } from "../../services/userService";
 import ShowUser from "./ShowUser";

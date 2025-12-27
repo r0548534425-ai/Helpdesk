@@ -2,7 +2,7 @@
 import React, { useContext } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { useNavigate } from 'react-router-dom'  
-import { AuthContext } from "../../context/Slice"
+import { AuthContext } from "../../context/AuthContex"
 import type { UserInput } from "../../types"
 import swal from 'sweetalert';
 import { addUserApi } from "../../services/userService"

@@ -59,6 +59,7 @@
 - **React Router v6** - ניתוב
 - **Context API + useReducer** - ניהול state גלובלי
 - **React Query (TanStack Query)** - ניהול server state
+- **Material-UI (MUI)** - ספריית UI components
 - **Axios** - HTTP requests
 - **SweetAlert** - התראות יפות
 - **React Hook Form** - ניהול טפסים
@@ -79,7 +80,7 @@
 
 ### 1️⃣ הורדת הפרויקט
 ```bash
-git clone <repository-url>
+git clone https://github.com/r0548534425-ai/Helpdesk.git
 cd react-project
 ```
 
@@ -106,7 +107,28 @@ npm run dev
 
 ---
 
-## 📁 מבנה הפרויקט
+## � משתמשי דוגמה להתחברות
+
+### Admin (מנהל)
+- **Email:** `admin@example.com`
+- **Password:** `admin123`
+- **הרשאות:** גישה מלאה לכל המערכת
+
+### Agent (סוכן)
+- **Email:** `agent@example.com`
+- **Password:** `agent123`
+- **הרשאות:** ניהול טיקטים שהוקצו אליו
+
+### Customer (לקוח)
+- **Email:** `customer@example.com`
+- **Password:** `customer123`
+- **הרשאות:** יצירת טיקטים חדשים וצפייה בטיקטים שלו
+
+> **💡 הערה:** ניתן להירשם למערכת ולקבל אוטומטית תפקיד Customer
+
+---
+
+## �📁 מבנה הפרויקט
 
 ```
 src/
@@ -122,7 +144,7 @@ src/
 │   └── Register.tsx     # הרשמה
 │
 ├── context/             # State Management
-│   └── Slice.tsx        # Context + Reducer
+│   └── AuthContex.tsx   # Context + Reducer (JWT Auth)
 │
 ├── guards/              # Route Protection
 │   └── ProtectedRoute.tsx

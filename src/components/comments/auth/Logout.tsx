@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { AuthContext } from '../context/Slice';
+import { AuthContext } from '../../../context/AuthContex';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 

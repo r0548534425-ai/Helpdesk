@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from '../components/comments/auth/Login';
+import Register from '../components/comments/auth/Register';
 import About from '../pages/About';
 import AddTicket from '../components/tickets/AddTicket';
 import AddUser from '../components/users/AddUser';
@@ -10,7 +10,7 @@ import AddCommentComponent from '../components/comments/AddComment';
 import TicketDetailsPage from '../pages/TicketDetailsPage';
 import ProtectedRoute from '../guards/ProtectedRoute';
 import Unauthorized from '../pages/Unauthorized';
-import Logout from '../components/Logout';
+import Logout from '../components/comments/auth/Logout';
 import Dashboard from '../pages/Dashboard';
 import Priority from '../components/priorities/Priority';
 import AddPriorityApi from '../components/priorities/AddPriorityApi';

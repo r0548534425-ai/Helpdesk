@@ -4,7 +4,7 @@ import type { CommentInput } from '../../types';
 import { Box, Typography, Avatar, Paper } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { AuthContext } from '../../context/Slice';
+import { AuthContext } from '../../context/AuthContex';
 
 const ShowComment: React.FC<CommentInput> = (comment) => {
     const { state } = useContext(AuthContext);

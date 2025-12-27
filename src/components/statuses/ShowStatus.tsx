@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/Slice";
+import { AuthContext } from "../../context/AuthContex";
 import { GetStatus } from "../../services/StatusService";
 import { Box, Container, Typography, CircularProgress, Card, CardContent, Chip } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';

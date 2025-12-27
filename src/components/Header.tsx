@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/Slice";
+import { AuthContext } from "../context/AuthContex";
 import { AppBar, Toolbar, Button, Box, Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/Slice";
+import { AuthContext } from "../../context/AuthContex";
 import { useNavigate } from "react-router-dom";
 import ShowComment from "./ShowComment";
 import type { CommentInput } from "../../types";

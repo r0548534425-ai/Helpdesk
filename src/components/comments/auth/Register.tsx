@@ -2,14 +2,14 @@
 import React, { useContext } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { useNavigate } from 'react-router-dom'  
-import { AuthContext } from "../context/Slice"
-import { RegisterUser } from "../services/AuthService.ts"; 
-import type { RegisterInput } from "../types/index.ts";
+import { AuthContext } from "../../../context/AuthContex.tsx"
+import { RegisterUser } from "../../../services/AuthService.ts"; 
+import type { RegisterInput } from "../../../types/index.ts";
 import { Box, Card, CardContent, TextField, Button, Typography, CircularProgress, Container } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import swal from "sweetalert";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../Header.tsx";
+import Footer from "../../Footer.tsx";
 
 
 const Register:React.FC = () => {

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../context/Slice";
+import { AuthContext } from "../../context/AuthContex";
 import TicketSummaryCard from "./TicketSummaryCard"; 
 import type { ticketProps } from "../../types";
 import { useQuery } from "@tanstack/react-query";

@@ -94,5 +94,24 @@ const DeleteTicketApi=async(Ticket:TickeToDelete)=>{
       throw error;
     }
 }
+const getTicketById=async (id:number,token:string|null)=>{
+    try{
+        const response = await axios.get(`http://localhost:4000/tickets/${id}`, {
+            headers: {
+                "Content-Type": "application/json", 
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error: any) {
+        const message = error.response?.data?.message ;
+        swal({
+            title: "שגיאה בקבלת טיקט",
+            text: message,
+            icon: "error"
+        });
+        return null;
+    }
+}
   
-export {AddTicketApi, UpdateTicket, getTickets,DeleteTicketApi}; 
+export {AddTicketApi, UpdateTicket, getTickets,DeleteTicketApi, getTicketById}; 

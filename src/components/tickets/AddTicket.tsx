@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import{useNavigate} from 'react-router-dom'  
-import { AuthContext } from "../../context/Slice"
+import { AuthContext } from "../../context/AuthContex"
 import swal from 'sweetalert';
 import {AddTicketApi} from "../../services/TicketService"
 import {GetPriorities} from "../../services/PriorityService"

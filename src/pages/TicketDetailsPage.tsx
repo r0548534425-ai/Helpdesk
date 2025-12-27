@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../context/Slice";
+import { AuthContext } from "../context/AuthContex";
 import { useNavigate, useParams } from "react-router-dom";
 import ShowTicket from "../components/tickets/ShowTicket";
 import ShowCommentDetails from "../components/comments/ShowCommentDetails";
 import type { ticketProps } from "../types";
-import { getTickets } from "../services/TicketService";
+import { getTicketById, getTickets } from "../services/TicketService";
 import { Box, Container, Typography, CircularProgress, Card, CardContent, Divider } from '@mui/material';
 import CommentIcon from '@mui/icons-material/Comment';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
@@ -17,15 +17,14 @@ const TicketDetailsPage: React.FC = () => {
     const { state } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const { data: tickets, isLoading } = useQuery({
+    const { data: ticket, isLoading } = useQuery({
         queryKey: ['tickets', state.token],
-        queryFn: () => getTickets(state.token),
+        queryFn: () => getTicketById(Number(id), state.token),
         enabled: !!state.token && !!id,
     });
 
-    const ticket = tickets?.find((t: ticketProps) => t.id === Number(id)) || null;
-
-    if (!isLoading && !ticket && tickets) {
+    
+    if (!isLoading && !ticket) {
         navigate(-1);
     }
 
