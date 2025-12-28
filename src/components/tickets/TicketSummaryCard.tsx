@@ -10,24 +10,6 @@ interface TicketSummaryCardProps {
 }
 
 const TicketSummaryCard: React.FC<TicketSummaryCardProps> = ({ ticket }) => {
-    const getPriorityColor = (priority: string | null) => {
-        switch (priority) {
-            case 'נמוך': return 'success';
-            case 'בינוני': return 'warning';
-            case 'גבוה': return 'error';
-            default: return 'default';
-        }
-    };
-
-    const getStatusColor = (status: number | null) => {
-        switch (status) {
-            case 1: return '#4caf50'; // פתוח - ירוק
-            case 2: return '#ff9800'; // בטיפול - כתום
-            case 3: return '#f44336'; // סגור - אדום
-            default: return '#9e9e9e';
-        }
-    };
-
     return (
         <Card 
             sx={{ 
@@ -36,8 +18,7 @@ const TicketSummaryCard: React.FC<TicketSummaryCardProps> = ({ ticket }) => {
                     boxShadow: 6,
                     transform: 'translateY(-2px)',
                     transition: 'all 0.3s ease'
-                },
-                borderRight: `6px solid ${getStatusColor(ticket.status_id)}`
+                }
             }}
         >
             <CardContent>
@@ -50,9 +31,15 @@ const TicketSummaryCard: React.FC<TicketSummaryCardProps> = ({ ticket }) => {
                     </Box>
                     <Box sx={{ display: 'flex', gap: 1 }}>
                         <Chip 
-                            label={ticket.priority_name || 'לא צוין'} 
-                            color={getPriorityColor(ticket.priority_name)}
+                            label={`עדיפות: ${ticket.priority_name || 'לא צוין'}`} 
                             size="small"
+                            color="default"
+                        />
+                        <Chip 
+                            label={`סטטוס: ${ticket.status_name || 'לא צוין'}`} 
+                            size="small"
+                            color="primary"
+                            variant="outlined"
                         />
                     </Box>
                 </Box>

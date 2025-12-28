@@ -8,6 +8,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { UpdateTicket } from "../../services/TicketService";
 import swal from "sweetalert";
 import { GetStatus } from "../../services/StatusService";
+import { GetPriorities } from "../../services/PriorityService";
 import { Box, Typography, Select, MenuItem, FormControl, InputLabel, Button, Chip, Divider, CircularProgress } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -38,6 +39,15 @@ const ShowTicket: React.FC<{ ticket: ticketProps; hideCommentsButton?: boolean }
     }
   });
 
+  const mutationPriority = useMutation({
+    mutationFn:(variables:TicketInput) => UpdateTicket(variables),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
+      queryClient.invalidateQueries({ queryKey: ['ticket', ticket.id] });
+      swal({ title: "עדיפות עודכנה בהצלחה!", icon: "success" });
+    }
+  });
+
   const mutationDelete = useMutation({
     mutationFn:(variables:TickeToDelete) => DeleteTicketApi(variables),
     onSuccess: () => {
@@ -60,6 +70,12 @@ const ShowTicket: React.FC<{ ticket: ticketProps; hideCommentsButton?: boolean }
     queryKey: ["status"],
     queryFn: () => GetStatus(state.token),
     enabled: !!state.token && (state.user?.role === 'admin' || state.user?.role === 'agent'),
+  });
+
+  const { data: priorityList, isLoading: isLoadingPriority } = useQuery({
+    queryKey: ["priority"],
+    queryFn: () => GetPriorities(state.token),
+    enabled: !!state.token && state.user?.role === 'admin',
   });
 
   return (
@@ -132,6 +148,31 @@ const ShowTicket: React.FC<{ ticket: ticketProps; hideCommentsButton?: boolean }
 
       {state.user?.role === 'admin' && (
         <Box sx={{ mt: 2 }}>
+          {isLoadingPriority ? (
+            <CircularProgress size={24} />
+          ) : (
+            <FormControl fullWidth sx={{ mb: 2 }}>
+              <InputLabel>שנה עדיפות</InputLabel>
+              <Select 
+                value={ticket.priority_id || ""}
+                label="שנה עדיפות"
+                onChange={(e) => {
+                  mutationPriority.mutate({
+                    id: ticket.id,  
+                    assigned_to: ticket.assigned_to,  
+                    status_id: ticket.status_id,
+                    priority_id: Number(e.target.value),
+                    token: state.token,
+                  })
+                }}
+              >
+                {priorityList?.map((p: any) => (
+                  <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
           {isLoadingAgents ? (
             <CircularProgress size={24} />
           ) : (

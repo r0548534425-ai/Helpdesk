@@ -8,6 +8,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IFormInput {
     status: string;
@@ -15,13 +16,15 @@ interface IFormInput {
       
 const AddStatusApi: React.FC = ()=>{
    const { state } = useContext(AuthContext);   
-   const navigate = useNavigate() 
+   const navigate = useNavigate();
+   const queryClient = useQueryClient();
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
       
  
           const response = await AddStatus(data.status, state.token);
           if (response) {
+            queryClient.invalidateQueries({ queryKey: ["status"] });
             swal("Success", "Status נוסף בהצלחה", "success");
            
          

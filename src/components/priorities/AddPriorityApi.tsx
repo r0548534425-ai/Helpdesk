@@ -8,6 +8,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IFormInput {
     priority: string;
@@ -15,13 +16,15 @@ interface IFormInput {
       
 const AddPriorityApi: React.FC = ()=>{
    const { state } = useContext(AuthContext);   
-   const navigate = useNavigate() 
+   const navigate = useNavigate();
+   const queryClient = useQueryClient();
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
       
  
           const response = await AddPriority(data.priority, state.token);
           if (response) {
+            queryClient.invalidateQueries({ queryKey: ["priority"] });
             swal("Success", "Priority נוסף בהצלחה", "success");
            
          
